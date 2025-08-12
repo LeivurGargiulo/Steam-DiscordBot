@@ -1,0 +1,52 @@
+# Core Discord Bot Dependencies
+discord.py==2.3.2
+python-telegram-bot==20.7
+
+# HTTP and Async Support
+aiohttp==3.9.1
+requests==2.31.0
+
+# Configuration and Environment
+python-dotenv==1.0.0
+
+# Data Processing and Validation
+pydantic==2.5.0
+typing-extensions==4.8.0
+
+# Caching and Performance
+aioredis==2.0.1
+cachetools==5.3.2
+
+# Logging and Monitoring
+structlog==23.2.0
+colorlog==6.8.0
+
+# Database Support (Optional)
+asyncpg==0.29.0
+sqlalchemy==2.0.23
+alembic==1.13.1
+
+# Testing and Development
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Performance and Monitoring
+psutil==5.9.6
+prometheus-client==0.19.0
+
+# Security
+cryptography==41.0.8
+bcrypt==4.1.2
+
+# Utilities
+click==8.1.7
+rich==13.7.0
+tqdm==4.66.1
+
+# Production Dependencies
+gunicorn==21.2.0
+uvloop==0.19.0; sys_platform != "win32"
