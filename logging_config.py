@@ -73,19 +73,32 @@ def setup_logging():
     
     # Log startup
     logging.info("=" * 60)
-    logging.info("Steam Telegram Bot Starting")
+    logging.info("Steam Bot Starting")
     logging.info(f"Startup Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     logging.info("=" * 60)
     
     return logger
 
-def log_command(update, command):
+def log_command(context, command):
     """Log user commands for analytics"""
-    user_id = update.effective_user.id if update.effective_user else 'Unknown'
-    username = update.effective_user.username if update.effective_user else 'Unknown'
-    chat_id = update.effective_chat.id if update.effective_chat else 'Unknown'
+    # Handle both Telegram and Discord contexts
+    if hasattr(context, 'effective_user'):  # Telegram context
+        user_id = context.effective_user.id if context.effective_user else 'Unknown'
+        username = context.effective_user.username if context.effective_user else 'Unknown'
+        chat_id = context.effective_chat.id if context.effective_chat else 'Unknown'
+        platform = 'Telegram'
+    elif hasattr(context, 'author'):  # Discord context
+        user_id = context.author.id if context.author else 'Unknown'
+        username = context.author.display_name if context.author else 'Unknown'
+        chat_id = context.channel.id if context.channel else 'Unknown'
+        platform = 'Discord'
+    else:
+        user_id = 'Unknown'
+        username = 'Unknown'
+        chat_id = 'Unknown'
+        platform = 'Unknown'
     
-    logging.info(f"Command executed - User: {user_id} (@{username}) Chat: {chat_id} Command: {command}")
+    logging.info(f"Command executed - Platform: {platform} User: {user_id} (@{username}) Chat: {chat_id} Command: {command}")
 
 def log_api_call(api_name, params=None, success=True, error=None):
     """Log API calls for monitoring"""
