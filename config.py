@@ -5,10 +5,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
-    """Configuration class for the Steam Telegram Bot"""
+    """Configuration class for the Steam Bot"""
     
-    # Telegram Bot Token
+    # Bot Tokens
     TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+    DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
     
     # Steam API Key
     STEAM_API_KEY = os.getenv('STEAM_API_KEY')
@@ -27,7 +28,7 @@ class Config:
     @classmethod
     def validate_config(cls):
         """Validate that required environment variables are set"""
-        if not cls.TELEGRAM_TOKEN:
-            raise ValueError("TELEGRAM_TOKEN environment variable is required")
+        if not cls.DISCORD_TOKEN:
+            raise ValueError("DISCORD_TOKEN environment variable is required")
         if not cls.STEAM_API_KEY:
             raise ValueError("STEAM_API_KEY environment variable is required")
